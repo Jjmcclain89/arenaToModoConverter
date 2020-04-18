@@ -1,0 +1,25 @@
+.content {
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.upload-content,
+.output-content {
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#arenaUpload{
+    padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 48px;
+	padding-bottom: 48px;
+    border: 3px dashed black;
+    margin-top: 8px;
+}
