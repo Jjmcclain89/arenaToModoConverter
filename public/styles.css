@@ -27,5 +27,6 @@
 	padding-right: 16px;
 	padding-top: 48px;
 	padding-bottom: 48px;
-	border: 3px dashed black;
+    border: 3px dashed black;
+    border-radius: 8px;
 }

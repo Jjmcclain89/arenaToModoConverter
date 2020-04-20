@@ -73,8 +73,9 @@ window.onload = () => {
 			let line = lines[currentLineIndex].split(`(`);
 			currentLineIndex++;
 			newLines.push(line[0]);
-		}
-		document.getElementById('output-text').innerHTML = newLines.join(`\n`);
+        }
+        const deckList = newLines.join(`\n`);
+		document.getElementById('output-text').innerHTML = deckList
     }
 
     function downloadString(text, fileType, fileName) {
