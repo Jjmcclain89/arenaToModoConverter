@@ -5,10 +5,9 @@ window.onload = () => {
 		if (!window.FileReader) {
 			alert('Your browser is not supported');
 		}
-		var input = arenaUpload;
-        console.log("!")
+		const input = arenaUpload;
 		// Create a reader object
-		var reader = new FileReader();
+		const reader = new FileReader();
 		if (input.files.length) {
 			var textFile = input.files[0];
 			console.log('file read');
@@ -19,10 +18,39 @@ window.onload = () => {
 		}
 	});
 
-	function processFile(e) {
-		var file = e.target.result,
-			results;
-		let lines = file.split(`\n`);
+	const arenaTextInput = document.getElementById('arenaTextInput');
+    console.log(arenaTextInput)
+	arenaTextInput.addEventListener('change', handleArenaTextInputChange);
+
+    const parseButton = document.getElementById('parseButton');
+    parseButton.addEventListener('click', handleParseClick);
+    
+    const downloadLink = document.getElementById('downloadButton');
+    downloadButton.addEventListener('click', handleDownloadClick);
+
+    function handleDownloadClick(e){
+        console.log('download');
+        const outputText = document.getElementById('output-text').value;
+        console.log(outputText);
+        downloadString(outputText, "txt", "modoDeck.txt")
+    }
+
+    function handleParseClick(e){
+        parseDecklist(arenaTextInput.value)
+    }
+    
+    function processFile(e) {
+		var data = e.target.result;
+		parseDecklist(data);
+	}
+
+	function handleArenaTextInputChange(e) {
+		const data = arenaTextInput.value;
+		parseDecklist(data);
+	}
+
+	function parseDecklist(data) {
+		let lines = data.split(`\n`);
 		lines = lines.map((line) => line.replace(/[\x00-\x1F\x7F-\x9F]/g, ''));
 		const newLines = [];
 
@@ -47,7 +75,19 @@ window.onload = () => {
 			newLines.push(line[0]);
 		}
 		document.getElementById('output-text').innerHTML = newLines.join(`\n`);
+    }
 
-		console.log(newLines);
-	}
+    function downloadString(text, fileType, fileName) {
+        var blob = new Blob([text], { type: fileType });
+      
+        var a = document.createElement('a');
+        a.download = fileName;
+        a.href = URL.createObjectURL(blob);
+        a.dataset.downloadurl = [fileType, a.download, a.href].join(':');
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
+      }
 };

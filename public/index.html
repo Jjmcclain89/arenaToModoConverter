@@ -15,12 +15,20 @@
 		<div class="">
 			<div class="content">
 				<div class="upload-content">
-					Arena Deck
+					<p>Upload Arena Deck</p>
 					<input type="file" id="arenaUpload" />
 				</div>
+				<div class="text-input-content">
+					<p>Paste Arena Deck</p>
+					<textarea cols="50" rows="25" id="arenaTextInput">
+					</textarea>
+                    <button id="parseButton">Parse!</button>
+				</div>
 				<div class="output-content">
-					Modo deck:
-					<textarea cols="50" rows="25" id="output-text"> </textarea>
+                    <p>Modo deck</p>
+					<textarea cols="50" rows="25" id="output-text">
+                    </textarea>
+                    <button id="downloadButton"><a id="downloadLink" href="">Download</a></button>
 				</div>
 			</div>
 		</div>
